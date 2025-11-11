@@ -1,0 +1,10 @@
+{
+  "name": "@acme/monorepo",
+  "packageManager": "pnpm@10.18.1",
+  "scripts": {
+    "dev": "turbo dev --ui=tui"
+  },
+  "devDependencies": {
+    "turbo": "^2.6.1"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "files.watcherExclude": {
+    "**/routeTree.gen.ts": true,
+    "**/.adonisjs/**": true
+  },
+  "search.exclude": {
+    "**/routeTree.gen.ts": true,
+    "**/.adonisjs/**": true
+  },
+  "files.readonlyInclude": {
+    "**/routeTree.gen.ts": true,
+    "**/.adonisjs/**": true
+  }
+}
