@@ -1,6 +1,6 @@
-import type User from '../models/user.ts'
-
 import { BaseTransformer } from '@adonisjs/core/transformers'
+
+import type User from '../models/user.ts'
 
 export default class UserTransformer extends BaseTransformer<User> {
   toObject() {

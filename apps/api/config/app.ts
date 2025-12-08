@@ -1,6 +1,5 @@
 import app from '@adonisjs/core/services/app'
 import { defineConfig } from '@adonisjs/core/http'
-
 import env from '#start/env'
 
 /**
