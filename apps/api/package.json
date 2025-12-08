@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "exports": {
-    "./registry": "./.adonisjs/client/registry.ts"
+    "./registry": "./.adonisjs/client/registry.ts",
+    "./data": "./.adonisjs/client/data.d.ts"
   },
   "scripts": {
     "start": "node bin/server.js",
