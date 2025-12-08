@@ -41,7 +41,7 @@ Full-stack, opinionated starter kit that brings together AdonisJS 7 (beta) and R
 	pnpm dev
 	```
 
-The API will be running at `http://localhost:3333` and the frontend at `http://localhost:3000`.
+The API will be running at `http://localhost:3333` and the frontend at `http://localhost:5173`.
 
 ## Project structure
 
