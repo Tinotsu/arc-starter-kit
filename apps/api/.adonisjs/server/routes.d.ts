@@ -8,6 +8,7 @@ export type ScannedRoutes = {
     'auth.login': { paramsTuple?: []; params?: {} }
     'auth.logout': { paramsTuple?: []; params?: {} }
     'auth.get_me': { paramsTuple?: []; params?: {} }
+    'health_checks.handle': { paramsTuple?: []; params?: {} }
   }
   POST: {
     'auth.register': { paramsTuple?: []; params?: {} }
@@ -16,9 +17,11 @@ export type ScannedRoutes = {
   }
   GET: {
     'auth.get_me': { paramsTuple?: []; params?: {} }
+    'health_checks.handle': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
     'auth.get_me': { paramsTuple?: []; params?: {} }
+    'health_checks.handle': { paramsTuple?: []; params?: {} }
   }
 }
 declare module '@adonisjs/core/types/http' {

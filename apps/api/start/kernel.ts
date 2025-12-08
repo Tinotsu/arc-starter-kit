@@ -37,4 +37,5 @@ router.use([
 export const middleware = router.named({
   guest: () => import('#identity/middleware/guest_middleware'),
   auth: () => import('#identity/middleware/auth_middleware'),
+  requireSecretToken: () => import('#core/middleware/require_secret_token'),
 })

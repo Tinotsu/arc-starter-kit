@@ -47,10 +47,10 @@
     "@tanstack/react-query": "^5.90.12",
     "@tuyau/core": "catalog:",
     "@vinejs/vine": "^4.1.0",
-    "edge.js": "^6.3.0",
     "luxon": "^3.7.2",
     "pg": "^8.16.3",
-    "reflect-metadata": "^0.2.2"
+    "reflect-metadata": "^0.2.2",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@adonisjs/assembler": "^8.0.0-next.20",
