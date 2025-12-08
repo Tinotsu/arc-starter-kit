@@ -10,6 +10,7 @@
     "test": "turbo test"
   },
   "devDependencies": {
+    "@types/node": "^24.10.1",
     "oxfmt": "^0.17.0",
     "oxlint": "^1.32.0",
     "oxlint-tsgolint": "^0.8.4",
