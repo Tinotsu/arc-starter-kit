@@ -28,4 +28,8 @@ export default class AuthController {
 
     return await serialize(UserTransformer.transform(user))
   }
+
+  async isAuthenticated({ auth }: HttpContext) {
+    return { isAuthenticated: !!auth.user }
+  }
 }

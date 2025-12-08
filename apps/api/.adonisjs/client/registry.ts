@@ -30,6 +30,12 @@ const routes = {
     tokens: [{"old":"/me","type":0,"val":"me","end":""}],
     types: placeholder as Registry['auth.get_me']['types'],
   },
+  'auth.is_authenticated': {
+    methods: ["GET","HEAD"],
+    pattern: '/is-authenticated',
+    tokens: [{"old":"/is-authenticated","type":0,"val":"is-authenticated","end":""}],
+    types: placeholder as Registry['auth.is_authenticated']['types'],
+  },
   'health_checks.handle': {
     methods: ["GET","HEAD"],
     pattern: '/health',

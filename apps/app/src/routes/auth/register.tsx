@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 
 import { query } from '@/lib/tuyau'
+import { queryClient } from '@/lib/query_client'
+import { redirectToDashboardIfAuthenticated } from '@/hooks/auth'
 import { Input } from '@/components/ui/input'
 import { Field, FieldDescription, FieldGroup, FieldLabel } from '@/components/ui/field'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -10,17 +12,12 @@ import { Button } from '@/components/ui/button'
 
 export const Route = createFileRoute('/auth/register')({
   component: RouteComponent,
+  beforeLoad: () => redirectToDashboardIfAuthenticated(),
 })
 
 function RouteComponent() {
   const navigate = useNavigate()
-  const { data: user } = useQuery(query.auth.getMe.queryOptions())
 
-  useEffect(() => {
-    if (user) {
-      navigate({ to: '/dashboard' })
-    }
-  }, [user, navigate])
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -31,8 +28,9 @@ function RouteComponent() {
   const [errors, setErrors] = useState<Record<string, string>>({})
   const register = useMutation(
     query.auth.register.mutationOptions({
-      onSuccess: () => {
-        navigate({ to: '/dashboard' })
+      onSuccess: async () => {
+        await queryClient.resetQueries()
+        await navigate({ to: '/dashboard' })
       },
       onError: (error: any) => {
         if (error.response?.data?.errors) setErrors(error.response.data.errors)

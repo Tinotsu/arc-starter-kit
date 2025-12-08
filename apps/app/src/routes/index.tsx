@@ -1,7 +1,8 @@
+import { match } from 'ts-pattern'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useQuery } from '@tanstack/react-query'
 
-import { query } from '@/lib/tuyau'
+import { isAuthenticatedQueryOptions } from '@/hooks/auth'
 import { Button } from '@/components/ui/button'
 
 export const Route = createFileRoute('/')({
@@ -9,7 +10,7 @@ export const Route = createFileRoute('/')({
 })
 
 function App() {
-  const { data: user } = useQuery(query.auth.getMe.queryOptions())
+  const { data } = useQuery(isAuthenticatedQueryOptions())
 
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-4rem)]">
@@ -21,22 +22,24 @@ function App() {
           A minimal, clean starter template for building modern web applications.
         </p>
         <div className="flex gap-4 justify-center">
-          {user ? (
-            <Link to="/dashboard">
-              <Button size="lg">Go to Dashboard</Button>
-            </Link>
-          ) : (
-            <>
-              <Link to="/auth/login">
-                <Button variant="outline" size="lg">
-                  Sign in
-                </Button>
+          {match(data?.isAuthenticated)
+            .with(true, () => (
+              <Link to="/dashboard">
+                <Button size="lg">Go to Dashboard</Button>
               </Link>
-              <Link to="/auth/register">
-                <Button size="lg">Get started</Button>
-              </Link>
-            </>
-          )}
+            ))
+            .otherwise(() => (
+              <>
+                <Link to="/auth/login">
+                  <Button variant="outline" size="lg">
+                    Sign in
+                  </Button>
+                </Link>
+                <Link to="/auth/register">
+                  <Button size="lg">Get started</Button>
+                </Link>
+              </>
+            ))}
         </div>
       </div>
     </div>

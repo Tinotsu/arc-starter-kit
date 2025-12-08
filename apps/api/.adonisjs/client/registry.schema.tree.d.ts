@@ -7,6 +7,7 @@ export interface ApiDefinition {
     login: typeof routes['auth.login']
     logout: typeof routes['auth.logout']
     getMe: typeof routes['auth.get_me']
+    isAuthenticated: typeof routes['auth.is_authenticated']
   }
   healthChecks: {
     handle: typeof routes['health_checks.handle']

@@ -49,6 +49,17 @@ export interface Registry {
       response: Awaited<ReturnType<import('#app/identity/controllers/auth_controller').default['getMe']>>
     }
   }
+  'auth.is_authenticated': {
+    methods: ["GET","HEAD"]
+    pattern: '/is-authenticated'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: Awaited<ReturnType<import('#app/identity/controllers/auth_controller').default['isAuthenticated']>>
+    }
+  }
   'health_checks.handle': {
     methods: ["GET","HEAD"]
     pattern: '/health'

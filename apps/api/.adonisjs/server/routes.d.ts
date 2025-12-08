@@ -8,6 +8,7 @@ export type ScannedRoutes = {
     'auth.login': { paramsTuple?: []; params?: {} }
     'auth.logout': { paramsTuple?: []; params?: {} }
     'auth.get_me': { paramsTuple?: []; params?: {} }
+    'auth.is_authenticated': { paramsTuple?: []; params?: {} }
     'health_checks.handle': { paramsTuple?: []; params?: {} }
   }
   POST: {
@@ -17,10 +18,12 @@ export type ScannedRoutes = {
   }
   GET: {
     'auth.get_me': { paramsTuple?: []; params?: {} }
+    'auth.is_authenticated': { paramsTuple?: []; params?: {} }
     'health_checks.handle': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
     'auth.get_me': { paramsTuple?: []; params?: {} }
+    'auth.is_authenticated': { paramsTuple?: []; params?: {} }
     'health_checks.handle': { paramsTuple?: []; params?: {} }
   }
 }

@@ -1,29 +1,18 @@
 import type { Data } from '@acme/api/data'
 
-import { createFileRoute, Navigate } from '@tanstack/react-router'
-import { useQuery } from '@tanstack/react-query'
+import { createFileRoute } from '@tanstack/react-router'
+import { useSuspenseQuery } from '@tanstack/react-query'
 
-import { query } from '@/lib/tuyau'
+import { getMeQueryOptions, redirectToLoginIfNotAuthenticated } from '@/hooks/auth'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 export const Route = createFileRoute('/dashboard')({
   component: RouteComponent,
+  beforeLoad: async () => await redirectToLoginIfNotAuthenticated(),
 })
 
 function RouteComponent() {
-  const { data: user, isLoading, error } = useQuery(query.auth.getMe.queryOptions())
-
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-[50vh]">
-        <p className="text-gray-500">Loading...</p>
-      </div>
-    )
-  }
-
-  if (error || !user) {
-    return <Navigate to="/auth/login" />
-  }
+  const { data: user } = useSuspenseQuery(getMeQueryOptions())
 
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-4rem)]">

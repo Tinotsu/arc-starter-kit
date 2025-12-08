@@ -1,19 +1,24 @@
 import { useState } from 'react'
-import { Link } from '@tanstack/react-router'
+import { Link, useNavigate } from '@tanstack/react-router'
 import { useQuery, useMutation } from '@tanstack/react-query'
 
 import { query } from '@/lib/tuyau'
+import { queryClient } from '@/lib/query_client'
+import { getMeQueryOptions } from '@/hooks/auth'
 
 import { Button } from './ui/button'
 
 export default function Header() {
+  const navigate = useNavigate()
+
   const [isOpen, setIsOpen] = useState(false)
-  const { data: user } = useQuery(query.auth.getMe.queryOptions())
+  const { data: user } = useQuery(getMeQueryOptions())
 
   const logout = useMutation(
     query.auth.logout.mutationOptions({
-      onSuccess: () => {
-        window.location.href = '/auth/login'
+      onSuccess: async () => {
+        queryClient.clear()
+        await navigate({ to: '/' })
       },
     }),
   )
@@ -106,7 +111,7 @@ export default function Header() {
                   </Link>
                   <Link
                     to="/auth/register"
-                    className="block px-3 py-2 rounded-md text-base font-medium bg-blue-600 text-white text-center rounded"
+                    className="block px-3 py-2 rounded-md text-base font-medium bg-blue-600 text-white text-center"
                   >
                     Get started
                   </Link>

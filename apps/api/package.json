@@ -50,6 +50,7 @@
     "luxon": "^3.7.2",
     "pg": "^8.16.3",
     "reflect-metadata": "^0.2.2",
+    "ts-pattern": "catalog:",
     "uuid": "^13.0.0"
   },
   "devDependencies": {

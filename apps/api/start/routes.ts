@@ -18,4 +18,5 @@ defineRouteGroup(() => {
   router.get('me', [identity.Auth, 'getMe'])
 }).use(middleware.auth())
 
+router.get('/is-authenticated', [identity.Auth, 'isAuthenticated'])
 router.get('health', [core.HealthChecks, 'handle']).use(middleware.requireSecretToken())
