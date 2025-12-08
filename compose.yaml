@@ -7,14 +7,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
-      - '5432:5432'
-
-  redis:
-    image: redis:8
-    volumes:
-      - redisdata:/data
-    ports:
-      - '6379:6379'
+      - "5432:5432"
 
 volumes:
   postgres:
