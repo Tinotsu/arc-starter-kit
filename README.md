@@ -1,7 +1,7 @@
 
 # AdonisJS Starter Kit
 
-Full-stack starter kit. This project brings together AdonisJS 7 (still in beta) for the backend and React with TanStack Router on the frontend all managed with a monorepo
+Full-stack, opinionated starter kit that brings together AdonisJS 7 (beta) and React with TanStack Router in a monorepo, designed to quickly bootstrap new projects and experiment with ideas. Shared as-is : some parts reflect my personal workflow and preferences.
 
 ## What's inside?
 
