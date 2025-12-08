@@ -1,7 +1,8 @@
 import '@adonisjs/inertia/types'
 
-import type React from 'react'
 import type { Prettify } from '@adonisjs/core/types/common'
+
+import type React from 'react'
 
 type ExtractProps<T> =
   T extends React.FC<infer Props>
@@ -11,6 +12,5 @@ type ExtractProps<T> =
       : never
 
 declare module '@adonisjs/inertia/types' {
-  export interface InertiaPages {
-  }
+  export interface InertiaPages {}
 }

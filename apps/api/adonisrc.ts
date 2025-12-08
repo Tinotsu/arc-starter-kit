@@ -1,6 +1,8 @@
-import { indexPages } from '@adonisjs/inertia'
-import { indexEntities } from '@adonisjs/core'
+import { generateRegistry } from '@tuyau/core/hooks'
 import { defineConfig } from '@adonisjs/core/app'
+import { indexEntities } from '@adonisjs/core'
+
+/// <reference path="./config/auth.ts" />
 
 export default defineConfig({
   /*
@@ -45,12 +47,10 @@ export default defineConfig({
     () => import('@adonisjs/core/providers/vinejs_provider'),
     () => import('@adonisjs/core/providers/edge_provider'),
     () => import('@adonisjs/session/session_provider'),
-    () => import('@adonisjs/vite/vite_provider'),
     () => import('@adonisjs/shield/shield_provider'),
     () => import('@adonisjs/static/static_provider'),
     () => import('@adonisjs/lucid/database_provider'),
     () => import('@adonisjs/cors/cors_provider'),
-    () => import('@adonisjs/inertia/inertia_provider'),
     () => import('@adonisjs/auth/auth_provider'),
   ],
 
@@ -112,12 +112,21 @@ export default defineConfig({
   hooks: {
     init: [
       indexEntities({
-        transformers: { enabled: true, withSharedProps: true },
-      }),
-      indexPages({
-        framework: 'react',
+        transformers: {
+          enabled: true,
+          source: './app',
+          glob: ['**/*_transformer.ts'],
+          importAlias: '#app',
+        },
+        controllers: {
+          enabled: true,
+          source: './app',
+          glob: ['**/*_controller.ts'],
+          importAlias: '#app',
+        },
       }),
     ],
-    buildStarting: [() => import('@adonisjs/vite/build_hook')],
+
+    routesScanned: [generateRegistry()],
   },
 })

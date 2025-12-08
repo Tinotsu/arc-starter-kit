@@ -1,67 +1,121 @@
-import { Link } from '@tanstack/react-router'
-
 import { useState } from 'react'
-import { Home, Menu, X } from 'lucide-react'
+import { Link } from '@tanstack/react-router'
+import { useQuery, useMutation } from '@tanstack/react-query'
+
+import { query } from '@/lib/tuyau'
+
+import { Button } from './ui/button'
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const { data: user } = useQuery(query.auth.getMe.queryOptions())
+
+  const logout = useMutation(
+    query.auth.logout.mutationOptions({
+      onSuccess: () => {
+        window.location.href = '/auth/login'
+      },
+    }),
+  )
 
   return (
-    <>
-      <header className="p-4 flex items-center bg-gray-800 text-white shadow-lg">
-        <button
-          onClick={() => setIsOpen(true)}
-          className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
-          aria-label="Open menu"
-        >
-          <Menu size={24} />
-        </button>
-        <h1 className="ml-4 text-xl font-semibold">
-          <Link to="/">
-            <img
-              src="/tanstack-word-logo-white.svg"
-              alt="TanStack Logo"
-              className="h-10"
-            />
+    <header className="border-b">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <Link to="/" className="text-xl font-semibold">
+            StarterKit
           </Link>
-        </h1>
-      </header>
 
-      <aside
-        className={`fixed top-0 left-0 h-full w-80 bg-gray-900 text-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
-      >
-        <div className="flex items-center justify-between p-4 border-b border-gray-700">
-          <h2 className="text-xl font-bold">Navigation</h2>
-          <button
-            onClick={() => setIsOpen(false)}
-            className="p-2 hover:bg-gray-800 rounded-lg transition-colors"
-            aria-label="Close menu"
-          >
-            <X size={24} />
-          </button>
+          <div className="hidden md:flex md:items-center md:space-x-3">
+            {user ? (
+              <>
+                <Link to="/dashboard">
+                  <Button variant="ghost">Dashboard</Button>
+                </Link>
+                <Button variant="ghost" onClick={() => logout.mutate({})}>
+                  Sign out
+                </Button>
+              </>
+            ) : (
+              <>
+                <Link to="/auth/login">
+                  <Button variant="ghost">Sign in</Button>
+                </Link>
+                <Link to="/auth/register">
+                  <Button>Get started</Button>
+                </Link>
+              </>
+            )}
+          </div>
+
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsOpen((s) => !s)}
+              aria-expanded={isOpen}
+              aria-label="Toggle navigation"
+              className="p-2 rounded-md inline-flex items-center justify-center hover:bg-accent focus:outline-none focus:ring-2 focus:ring-ring"
+            >
+              {isOpen ? (
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              ) : (
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              )}
+            </button>
+          </div>
         </div>
 
-        <nav className="flex-1 p-4 overflow-y-auto">
-          <Link
-            to="/"
-            onClick={() => setIsOpen(false)}
-            className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
-            activeProps={{
-              className:
-                'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
-            }}
-          >
-            <Home size={20} />
-            <span className="font-medium">Home</span>
-          </Link>
-
-          {/* Demo Links Start */}
-
-          {/* Demo Links End */}
-        </nav>
-      </aside>
-    </>
+        {isOpen && (
+          <div className="md:hidden mt-2 pb-4">
+            <nav className="flex flex-col space-y-2">
+              {user ? (
+                <>
+                  <Link
+                    to="/dashboard"
+                    className="block px-3 py-2 rounded-md text-base font-medium hover:bg-accent"
+                  >
+                    Dashboard
+                  </Link>
+                  <button
+                    onClick={() => logout.mutate({})}
+                    className="block px-3 py-2 rounded-md text-base font-medium hover:bg-accent text-left"
+                  >
+                    Sign out
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/auth/login"
+                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50"
+                  >
+                    Sign in
+                  </Link>
+                  <Link
+                    to="/auth/register"
+                    className="block px-3 py-2 rounded-md text-base font-medium bg-blue-600 text-white text-center rounded"
+                  >
+                    Get started
+                  </Link>
+                </>
+              )}
+            </nav>
+          </div>
+        )}
+      </div>
+    </header>
   )
 }

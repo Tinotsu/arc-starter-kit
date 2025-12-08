@@ -1,3 +1,4 @@
+import router from '@adonisjs/core/services/router'
 /*
 |--------------------------------------------------------------------------
 | Routes file
@@ -9,22 +10,21 @@
 
 import { middleware } from '#start/kernel'
 import { controllers } from '#generated/controllers'
-import router from '@adonisjs/core/services/router'
 
-router.on('/').renderInertia('home', {}).as('home')
+const {
+  identity: { controllers: identity },
+} = controllers
 
 router
   .group(() => {
-    router.get('signup', [controllers.NewAccount, 'create'])
-    router.post('signup', [controllers.NewAccount, 'store'])
-
-    router.get('login', [controllers.Session, 'create'])
-    router.post('login', [controllers.Session, 'store'])
+    router.post('register', [identity.Auth, 'register'])
+    router.post('login', [identity.Auth, 'login'])
   })
   .use(middleware.guest())
 
 router
   .group(() => {
-    router.post('logout', [controllers.Session, 'destroy'])
+    router.post('logout', [identity.Auth, 'logout'])
+    router.get('me', [identity.Auth, 'getMe'])
   })
   .use(middleware.auth())

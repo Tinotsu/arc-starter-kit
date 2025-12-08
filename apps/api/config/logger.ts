@@ -1,6 +1,6 @@
-import env from '#start/env'
 import app from '@adonisjs/core/services/app'
-import { defineConfig, targets } from '@adonisjs/core/logger'
+import { defineConfig, syncDestination, targets } from '@adonisjs/core/logger'
+import env from '#start/env'
 
 const loggerConfig = defineConfig({
   default: 'app',
@@ -14,6 +14,7 @@ const loggerConfig = defineConfig({
       enabled: true,
       name: env.get('APP_NAME'),
       level: env.get('LOG_LEVEL'),
+      desination: !app.inProduction ? await syncDestination() : undefined,
       transport: {
         targets: targets()
           .pushIf(!app.inProduction, targets.pretty())

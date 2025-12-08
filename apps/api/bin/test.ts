@@ -13,8 +13,8 @@
 process.env.NODE_ENV = 'test'
 
 import 'reflect-metadata'
-import { Ignitor, prettyPrintError } from '@adonisjs/core'
 import { configure, processCLIArgs, run } from '@japa/runner'
+import { Ignitor, prettyPrintError } from '@adonisjs/core'
 
 /**
  * URL to the application root. AdonisJS need it to resolve
@@ -43,20 +43,18 @@ new Ignitor(APP_ROOT, { importer: IMPORTER })
   })
   .testRunner()
   .configure(async (app) => {
-    const { runnerHooks, ...config } = await import('../tests/bootstrap.js')
+    const { runnerHooks, ...config } = await import('../tests/bootstrap.ts')
 
     processCLIArgs(process.argv.splice(2))
     configure({
       ...app.rcFile.tests,
       ...config,
-      ...{
-        setup: runnerHooks.setup,
-        teardown: runnerHooks.teardown.concat([() => app.terminate()]),
-      },
+      setup: runnerHooks.setup,
+      teardown: runnerHooks.teardown.concat([() => app.terminate()]),
     })
   })
   .run(() => run())
-  .catch((error) => {
+  .catch(async (error) => {
     process.exitCode = 1
-    prettyPrintError(error)
+    await prettyPrintError(error)
   })
