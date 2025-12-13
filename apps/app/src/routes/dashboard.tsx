@@ -23,7 +23,7 @@ function RouteComponent() {
   )
 }
 
-export function UserCard({ user }: { user: Data.Identity.Transformers.User }) {
+export function UserCard({ user }: { user: Data.Identity.User }) {
   return (
     <Card>
       <CardHeader>
