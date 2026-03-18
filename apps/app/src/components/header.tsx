@@ -55,7 +55,7 @@ export default function Header() {
 
           <div className="md:hidden">
             <button
-              onClick={() => setIsOpen((s) => !s)}
+              onClick={() => setIsOpen(s => !s)}
               aria-expanded={isOpen}
               aria-label="Toggle navigation"
               className="p-2 rounded-md inline-flex items-center justify-center hover:bg-accent focus:outline-none focus:ring-2 focus:ring-ring"

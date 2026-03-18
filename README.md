@@ -1,4 +1,3 @@
-
 # AdonisJS Starter Kit
 
 Full-stack, opinionated starter kit that brings together AdonisJS 7 (beta) and React with TanStack Router in a monorepo, designed to quickly bootstrap new projects and experiment with ideas. Shared as-is : some parts reflect my personal workflow and preferences.
@@ -19,27 +18,27 @@ Full-stack, opinionated starter kit that brings together AdonisJS 7 (beta) and R
 ### Installation
 
 1. Clone the repo:
-	```bash
-	git clone <repository-url>
-	cd adonis-starter-kit
-	```
+   ```bash
+   git clone <repository-url>
+   cd adonis-starter-kit
+   ```
 2. Install dependencies:
-	```bash
-	pnpm install
-	```
+   ```bash
+   pnpm install
+   ```
 3. Start the database:
-	```bash
-	docker compose up -d
-	```
+   ```bash
+   docker compose up -d
+   ```
 4. Run migrations:
-	```bash
-	cd apps/api
-	node ace migration:run
-	```
+   ```bash
+   cd apps/api
+   node ace migration:run
+   ```
 5. Start the dev servers:
-	```bash
-	pnpm dev
-	```
+   ```bash
+   pnpm dev
+   ```
 
 The API will be running at `http://localhost:3333` and the frontend at `http://localhost:5173`.
 
@@ -63,6 +62,6 @@ pnpm-workspace.yaml
 
 ---
 
-Feel free to fork, get inspired, or contribute if you want! 
+Feel free to fork, get inspired, or contribute if you want!
 
 MIT License

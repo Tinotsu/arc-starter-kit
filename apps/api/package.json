@@ -3,18 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "exports": {
-    "./registry": "./.adonisjs/client/registry/index.ts",
-    "./data": "./.adonisjs/client/data.d.ts"
-  },
-  "scripts": {
-    "start": "node bin/server.js",
-    "build": "node ace build",
-    "dev": "node ace serve --hmr",
-    "test": "node ace test",
-    "quick:test": "node ace test",
-    "typecheck": "tsc --noEmit"
-  },
   "imports": {
     "#app/*": "./app/*.js",
     "#core/*": "./app/core/*.js",
@@ -37,6 +25,18 @@
     "#tests/*": "./tests/*.js",
     "#start/*": "./start/*.js",
     "#config/*": "./config/*.js"
+  },
+  "exports": {
+    "./registry": "./.adonisjs/client/registry/index.ts",
+    "./data": "./.adonisjs/client/data.d.ts"
+  },
+  "scripts": {
+    "start": "node bin/server.js",
+    "build": "node ace build",
+    "dev": "node ace serve --hmr",
+    "test": "node ace test",
+    "quick:test": "node ace test",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@adonisjs/auth": "^10.0.0",

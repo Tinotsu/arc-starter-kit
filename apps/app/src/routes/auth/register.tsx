@@ -54,9 +54,9 @@ function RouteComponent() {
   }
 
   const handleChange = (field: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData((prev) => ({ ...prev, [field]: e.target.value }))
+    setFormData(prev => ({ ...prev, [field]: e.target.value }))
     if (errors[field]) {
-      setErrors((prev) => ({ ...prev, [field]: '' }))
+      setErrors(prev => ({ ...prev, [field]: '' }))
     }
   }
 

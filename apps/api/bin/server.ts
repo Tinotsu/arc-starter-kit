@@ -30,7 +30,7 @@ const IMPORTER = (filePath: string) => {
 }
 
 new Ignitor(APP_ROOT, { importer: IMPORTER })
-  .tap((app) => {
+  .tap(app => {
     app.booting(async () => {
       await import('#start/env')
     })
@@ -39,7 +39,7 @@ new Ignitor(APP_ROOT, { importer: IMPORTER })
   })
   .httpServer()
   .start()
-  .catch(async (error) => {
+  .catch(async error => {
     process.exitCode = 1
     await prettyPrintError(error)
   })

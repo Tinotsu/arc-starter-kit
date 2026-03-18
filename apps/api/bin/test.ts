@@ -34,7 +34,7 @@ const IMPORTER = (filePath: string) => {
 }
 
 new Ignitor(APP_ROOT, { importer: IMPORTER })
-  .tap((app) => {
+  .tap(app => {
     app.booting(async () => {
       await import('#start/env')
     })
@@ -42,7 +42,7 @@ new Ignitor(APP_ROOT, { importer: IMPORTER })
     app.listenIf(app.managedByPm2, 'SIGINT', () => app.terminate())
   })
   .testRunner()
-  .configure(async (app) => {
+  .configure(async app => {
     const { runnerHooks, ...config } = await import('../tests/bootstrap.ts')
 
     processCLIArgs(process.argv.splice(2))
@@ -54,7 +54,7 @@ new Ignitor(APP_ROOT, { importer: IMPORTER })
     })
   })
   .run(() => run())
-  .catch(async (error) => {
+  .catch(async error => {
     process.exitCode = 1
     await prettyPrintError(error)
   })

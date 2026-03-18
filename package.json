@@ -11,7 +11,8 @@
     "test": "turbo test"
   },
   "devDependencies": {
-    "@julr/tooling-configs": "^6.1.0",
+    "@adonisjs/eslint-plugin": "^2.2.2",
+    "@julr/tooling-configs": "^6.1.2",
     "@types/node": "^25.5.0",
     "lefthook": "^2.1.3",
     "oxfmt": "^0.41.0",
