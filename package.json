@@ -1,20 +1,29 @@
 {
   "name": "@acme/monorepo",
-  "packageManager": "pnpm@10.32.1",
   "scripts": {
+    "prepare": "lefthook install",
     "dev": "turbo dev --ui=tui",
-    "format": "oxfmt",
-    "lint": "oxlint",
-    "lint:fix": "oxlint --fix",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
+    "lint": "oxlint --type-aware",
+    "lint:fix": "oxlint --type-aware --fix",
     "typecheck": "turbo typecheck",
     "test": "turbo test"
   },
   "devDependencies": {
+    "@julr/tooling-configs": "^6.1.0",
     "@types/node": "^25.5.0",
+    "lefthook": "^2.1.3",
     "oxfmt": "^0.41.0",
     "oxlint": "^1.56.0",
     "oxlint-tsgolint": "^0.17.0",
     "turbo": "^2.8.18",
     "typescript": "^5.9.3"
+  },
+  "packageManager": "pnpm@10.32.1",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "lefthook"
+    ]
   }
 }

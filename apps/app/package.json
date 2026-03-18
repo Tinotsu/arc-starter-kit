@@ -20,7 +20,7 @@
     "@tanstack/react-router-devtools": "^1.166.9",
     "@tanstack/router-plugin": "^1.166.14",
     "@tuyau/core": "catalog:",
-    "@tuyau/react-query": "1.0.0-beta.1",
+    "@tuyau/react-query": "^1.1.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.577.0",
