@@ -55,26 +55,14 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#app/identity/controllers/auth_controller').default['getMe']>>>
     }
   }
-  'auth.is_authenticated': {
-    methods: ["GET","HEAD"]
-    pattern: '/is-authenticated'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#app/identity/controllers/auth_controller').default['isAuthenticated']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#app/identity/controllers/auth_controller').default['isAuthenticated']>>>
-    }
-  }
   'billing.checkout': {
     methods: ["POST"]
     pattern: '/billing/checkout'
     types: {
-      body: ExtractBody<InferInput<(typeof import('#app/billing/validators/billing').checkoutValidator)>>
+      body: ExtractBody<InferInput<(typeof import('#app/billing/validators/billing.js').checkoutValidator)>>
       paramsTuple: []
       params: {}
-      query: ExtractQuery<InferInput<(typeof import('#app/billing/validators/billing').checkoutValidator)>>
+      query: ExtractQuery<InferInput<(typeof import('#app/billing/validators/billing.js').checkoutValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#app/billing/controllers/billing_controller').default['checkout']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#app/billing/controllers/billing_controller').default['checkout']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
@@ -101,6 +89,18 @@ export interface Registry {
       query: {}
       response: ExtractResponse<Awaited<ReturnType<import('#app/billing/controllers/billing_controller').default['webhook']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#app/billing/controllers/billing_controller').default['webhook']>>>
+    }
+  }
+  'auth.is_authenticated': {
+    methods: ["GET","HEAD"]
+    pattern: '/is-authenticated'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#app/identity/controllers/auth_controller').default['isAuthenticated']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#app/identity/controllers/auth_controller').default['isAuthenticated']>>>
     }
   }
   'health_checks': {

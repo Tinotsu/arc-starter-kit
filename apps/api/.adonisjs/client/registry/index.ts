@@ -30,12 +30,6 @@ const routes = {
     tokens: [{"old":"/me","type":0,"val":"me","end":""}],
     types: placeholder as Registry['auth.get_me']['types'],
   },
-  'auth.is_authenticated': {
-    methods: ["GET","HEAD"],
-    pattern: '/is-authenticated',
-    tokens: [{"old":"/is-authenticated","type":0,"val":"is-authenticated","end":""}],
-    types: placeholder as Registry['auth.is_authenticated']['types'],
-  },
   'billing.checkout': {
     methods: ["POST"],
     pattern: '/billing/checkout',
@@ -53,6 +47,12 @@ const routes = {
     pattern: '/billing/webhook',
     tokens: [{"old":"/billing/webhook","type":0,"val":"billing","end":""},{"old":"/billing/webhook","type":0,"val":"webhook","end":""}],
     types: placeholder as Registry['billing.webhook']['types'],
+  },
+  'auth.is_authenticated': {
+    methods: ["GET","HEAD"],
+    pattern: '/is-authenticated',
+    tokens: [{"old":"/is-authenticated","type":0,"val":"is-authenticated","end":""}],
+    types: placeholder as Registry['auth.is_authenticated']['types'],
   },
   'health_checks': {
     methods: ["GET","HEAD"],
