@@ -4,6 +4,9 @@
  */
 
 export const controllers = {
+  billing: {
+    Billing: () => import('#app/billing/controllers/billing_controller'),
+  },
   core: {
     HealthChecks: () => import('#app/core/controllers/health_checks_controller'),
   },

@@ -9,12 +9,18 @@ export type ScannedRoutes = {
     'auth.logout': { paramsTuple?: []; params?: {} }
     'auth.get_me': { paramsTuple?: []; params?: {} }
     'auth.is_authenticated': { paramsTuple?: []; params?: {} }
+    'billing.checkout': { paramsTuple?: []; params?: {} }
+    'billing.portal': { paramsTuple?: []; params?: {} }
+    'billing.webhook': { paramsTuple?: []; params?: {} }
     'health_checks': { paramsTuple?: []; params?: {} }
   }
   POST: {
     'auth.register': { paramsTuple?: []; params?: {} }
     'auth.login': { paramsTuple?: []; params?: {} }
     'auth.logout': { paramsTuple?: []; params?: {} }
+    'billing.checkout': { paramsTuple?: []; params?: {} }
+    'billing.portal': { paramsTuple?: []; params?: {} }
+    'billing.webhook': { paramsTuple?: []; params?: {} }
   }
   GET: {
     'auth.get_me': { paramsTuple?: []; params?: {} }

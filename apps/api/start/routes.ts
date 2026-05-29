@@ -3,7 +3,7 @@ import { middleware } from '#start/kernel'
 import { controllers } from '#generated/controllers'
 import { defineRouteGroup } from '#app/core/utils/index'
 
-const { identity, core } = controllers
+const { identity, core, billing } = controllers
 
 defineRouteGroup(() => {
   router.post('register', [identity.Auth, 'register'])
@@ -14,6 +14,13 @@ defineRouteGroup(() => {
   router.post('logout', [identity.Auth, 'logout'])
   router.get('me', [identity.Auth, 'getMe'])
 }).use(middleware.auth())
+
+defineRouteGroup('billing', () => {
+  router.post('checkout', [billing.Billing, 'checkout'])
+  router.post('portal', [billing.Billing, 'portal'])
+}).use(middleware.auth())
+
+router.post('billing/webhook', [billing.Billing, 'webhook'])
 
 router.get('/is-authenticated', [identity.Auth, 'isAuthenticated'])
 router.get('health', [core.HealthChecks, 'handle']).use(middleware.requireSecretToken())

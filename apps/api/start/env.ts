@@ -32,4 +32,14 @@ export default await Env.create(new URL('../', import.meta.url), {
   |----------------------------------------------------------
   */
   SECRET_TOKEN: Env.schema.string(),
+
+  /*
+  |----------------------------------------------------------
+  | Stripe billing
+  |----------------------------------------------------------
+  */
+  FRONTEND_URL: Env.schema.string({ format: 'url', tld: false }),
+  STRIPE_SECRET_KEY: Env.schema.string.optional(),
+  STRIPE_WEBHOOK_SECRET: Env.schema.string.optional(),
+  STRIPE_PRICE_PRO: Env.schema.string.optional(),
 })

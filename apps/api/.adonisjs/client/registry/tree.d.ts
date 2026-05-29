@@ -9,5 +9,10 @@ export interface ApiDefinition {
     getMe: typeof routes['auth.get_me']
     isAuthenticated: typeof routes['auth.is_authenticated']
   }
+  billing: {
+    checkout: typeof routes['billing.checkout']
+    portal: typeof routes['billing.portal']
+    webhook: typeof routes['billing.webhook']
+  }
   healthChecks: typeof routes['health_checks']
 }

@@ -27,6 +27,9 @@ export default function Header() {
       </div>
 
       <div className="navbar-end hidden md:flex gap-1">
+        <Link to="/pricing" className="btn btn-ghost">
+          Pricing
+        </Link>
         {user ? (
           <>
             <Link to="/dashboard" className="btn btn-ghost">
@@ -67,6 +70,9 @@ export default function Header() {
             {user ? (
               <>
                 <li>
+                  <Link to="/pricing">Pricing</Link>
+                </li>
+                <li>
                   <Link to="/dashboard">Dashboard</Link>
                 </li>
                 <li>
@@ -77,6 +83,9 @@ export default function Header() {
               </>
             ) : (
               <>
+                <li>
+                  <Link to="/pricing">Pricing</Link>
+                </li>
                 <li>
                   <Link to="/auth/login">Sign in</Link>
                 </li>

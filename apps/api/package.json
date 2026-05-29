@@ -7,6 +7,7 @@
     "#app/*": "./app/*.js",
     "#core/*": "./app/core/*.js",
     "#identity/*": "./app/identity/*.js",
+    "#billing/*": "./app/billing/*.js",
     "#controllers/*": "./app/controllers/*.js",
     "#exceptions/*": "./app/exceptions/*.js",
     "#models/*": "./app/models/*.js",
@@ -51,6 +52,7 @@
     "luxon": "^3.7.2",
     "pg": "^8.20.0",
     "reflect-metadata": "^0.2.2",
+    "stripe": "^18.5.0",
     "ts-pattern": "catalog:",
     "uuid": "^13.0.0"
   },

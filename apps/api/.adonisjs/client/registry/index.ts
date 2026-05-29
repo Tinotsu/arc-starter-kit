@@ -36,6 +36,24 @@ const routes = {
     tokens: [{"old":"/is-authenticated","type":0,"val":"is-authenticated","end":""}],
     types: placeholder as Registry['auth.is_authenticated']['types'],
   },
+  'billing.checkout': {
+    methods: ["POST"],
+    pattern: '/billing/checkout',
+    tokens: [{"old":"/billing/checkout","type":0,"val":"billing","end":""},{"old":"/billing/checkout","type":0,"val":"checkout","end":""}],
+    types: placeholder as Registry['billing.checkout']['types'],
+  },
+  'billing.portal': {
+    methods: ["POST"],
+    pattern: '/billing/portal',
+    tokens: [{"old":"/billing/portal","type":0,"val":"billing","end":""},{"old":"/billing/portal","type":0,"val":"portal","end":""}],
+    types: placeholder as Registry['billing.portal']['types'],
+  },
+  'billing.webhook': {
+    methods: ["POST"],
+    pattern: '/billing/webhook',
+    tokens: [{"old":"/billing/webhook","type":0,"val":"billing","end":""},{"old":"/billing/webhook","type":0,"val":"webhook","end":""}],
+    types: placeholder as Registry['billing.webhook']['types'],
+  },
   'health_checks': {
     methods: ["GET","HEAD"],
     pattern: '/health',

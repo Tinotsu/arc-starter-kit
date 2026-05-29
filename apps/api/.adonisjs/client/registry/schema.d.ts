@@ -67,6 +67,42 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#app/identity/controllers/auth_controller').default['isAuthenticated']>>>
     }
   }
+  'billing.checkout': {
+    methods: ["POST"]
+    pattern: '/billing/checkout'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#app/billing/validators/billing').checkoutValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#app/billing/validators/billing').checkoutValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#app/billing/controllers/billing_controller').default['checkout']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#app/billing/controllers/billing_controller').default['checkout']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'billing.portal': {
+    methods: ["POST"]
+    pattern: '/billing/portal'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#app/billing/controllers/billing_controller').default['portal']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#app/billing/controllers/billing_controller').default['portal']>>>
+    }
+  }
+  'billing.webhook': {
+    methods: ["POST"]
+    pattern: '/billing/webhook'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#app/billing/controllers/billing_controller').default['webhook']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#app/billing/controllers/billing_controller').default['webhook']>>>
+    }
+  }
   'health_checks': {
     methods: ["GET","HEAD"]
     pattern: '/health'

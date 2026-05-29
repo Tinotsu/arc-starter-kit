@@ -14,4 +14,8 @@ export default class User extends compose(BaseModel, AuthFinder, WithTimestamps,
   @column() declare fullName: string | null
   @column() declare email: string
   @column({ serializeAs: null }) declare password: string
+  @column() declare stripeCustomerId: string | null
+  @column() declare stripeSubscriptionId: string | null
+  @column() declare subscriptionStatus: string | null
+  @column() declare plan: string | null
 }

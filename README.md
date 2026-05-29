@@ -42,6 +42,23 @@ Full-stack, opinionated starter kit that brings together AdonisJS 7 (beta) and R
 
 The API will be running at `http://localhost:3333` and the frontend at `http://localhost:5173`.
 
+### Stripe billing (optional)
+
+1. Create a product + recurring price in the [Stripe Dashboard](https://dashboard.stripe.com/test/products).
+2. Add to `apps/api/.env`:
+   ```
+   FRONTEND_URL=http://localhost:5173
+   STRIPE_SECRET_KEY=sk_test_...
+   STRIPE_WEBHOOK_SECRET=whsec_...
+   STRIPE_PRICE_PRO=price_...
+   ```
+3. Forward webhooks locally:
+   ```bash
+   stripe listen --forward-to localhost:3333/billing/webhook
+   ```
+4. Run the migration if you haven't: `cd apps/api && node ace migration:run`
+5. Visit `/pricing` to subscribe, `/dashboard` to manage billing.
+
 ## Project structure
 
 ```
