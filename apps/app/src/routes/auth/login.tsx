@@ -5,10 +5,6 @@ import { useMutation } from '@tanstack/react-query'
 import { query } from '@/lib/tuyau'
 import { queryClient } from '@/lib/query_client'
 import { redirectToDashboardIfAuthenticated } from '@/hooks/auth'
-import { Input } from '@/components/ui/input'
-import { Field, FieldDescription, FieldGroup, FieldLabel } from '@/components/ui/field'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
 
 export const Route = createFileRoute('/auth/login')({
   component: RouteComponent,
@@ -56,65 +52,65 @@ function RouteComponent() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-4rem)]">
-      <div className="w-full max-w-lg px-4">
-        <Card>
-          <CardHeader>
-            <CardTitle>Login to your account</CardTitle>
-            <CardDescription>Enter your email below to login to your account</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit}>
-              <FieldGroup>
-                {errors.general && (
-                  <FieldDescription className="text-red-500 text-center">
-                    {errors.general}
-                  </FieldDescription>
-                )}
-                <Field>
-                  <FieldLabel htmlFor="email">Email</FieldLabel>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="m@example.com"
-                    value={formData.email}
-                    onChange={handleChange('email')}
-                    required
-                  />
-                </Field>
-                <Field>
-                  <div className="flex items-center">
-                    <FieldLabel htmlFor="password">Password</FieldLabel>
-                    <a
-                      href="#"
-                      className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                    >
-                      Forgot your password?
-                    </a>
-                  </div>
-                  <Input
-                    id="password"
-                    type="password"
-                    value={formData.password}
-                    onChange={handleChange('password')}
-                    required
-                  />
-                </Field>
-                <Field>
-                  <Button type="submit" disabled={login.isPending}>
-                    {login.isPending ? 'Logging in...' : 'Login'}
-                  </Button>
-                  <FieldDescription className="text-center">
-                    Don't have an account?{' '}
-                    <Link to="/auth/register" className="text-blue-600 hover:underline">
-                      Sign up
-                    </Link>
-                  </FieldDescription>
-                </Field>
-              </FieldGroup>
-            </form>
-          </CardContent>
-        </Card>
+    <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] px-4">
+      <div className="card bg-base-100 shadow-xl w-full max-w-lg">
+        <div className="card-body">
+          <h2 className="card-title">Login to your account</h2>
+          <p className="text-base-content/70">Enter your email below to login to your account</p>
+
+          <form onSubmit={handleSubmit} className="space-y-4 mt-2">
+            {errors.general && (
+              <div role="alert" className="alert alert-error">
+                <span>{errors.general}</span>
+              </div>
+            )}
+
+            <label className="form-control w-full">
+              <div className="label">
+                <span className="label-text">Email</span>
+              </div>
+              <input
+                id="email"
+                type="email"
+                placeholder="m@example.com"
+                className="input input-bordered w-full"
+                value={formData.email}
+                onChange={handleChange('email')}
+                required
+              />
+            </label>
+
+            <label className="form-control w-full">
+              <div className="label">
+                <span className="label-text">Password</span>
+                <a href="#" className="label-text-alt link link-hover">
+                  Forgot your password?
+                </a>
+              </div>
+              <input
+                id="password"
+                type="password"
+                className="input input-bordered w-full"
+                value={formData.password}
+                onChange={handleChange('password')}
+                required
+              />
+            </label>
+
+            <div className="form-control mt-2">
+              <button type="submit" className="btn btn-primary" disabled={login.isPending}>
+                {login.isPending ? 'Logging in...' : 'Login'}
+              </button>
+            </div>
+
+            <p className="text-center text-sm opacity-70">
+              Don&apos;t have an account?{' '}
+              <Link to="/auth/register" className="link link-primary">
+                Sign up
+              </Link>
+            </p>
+          </form>
+        </div>
       </div>
     </div>
   )
